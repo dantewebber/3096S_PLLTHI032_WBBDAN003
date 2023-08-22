@@ -80,7 +80,6 @@ static uint8_t read_from_address(uint16_t address);
 static void delay(uint32_t delay_in_us);
 void displayPatternLED(uint8_t displayPattern);
 void CheckPB(void);
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -97,53 +96,13 @@ void displayPatternLED(uint8_t displayPattern){
   }
 }
 
-// void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-// {
-//     if(GPIO_Pin == Button0_Pin)
-//     {
-//       uint8_t u = 0;
-//       displayPatternLED(u);
-
-//       delay (3000000);
-
-//       HAL_TIM_Base_Stop_IT(&htim16);
-//       if (htim16.Init.Period==(1000 -1)) {
-//         htim16.Init.Period = 500 - 1;
-//       }
-//       else {
-//         htim16.Init.Period = 1000 - 1;
-//       }
-
-//       HAL_TIM_Base_Start_IT(&htim16);
-//     }
-// }
-
 void checkPB(void) {
   if (HAL_GPIO_ReadPin (Button0_GPIO_Port, Button0_Pin) == GPIO_PIN_RESET) {
-    
-    // The lines below were used in testing
-    // uint8_t u = 0;
-    // displayPatternLED(u);
-    // delay (5000);
 
     if (PB_Held_Down == FALSE) {
       PB_Pressed = TRUE;
     }
-    // PB_Held_Down = TRUE;
 
-    // HAL_TIM_Base_Stop_IT(&htim16);
-
-    // if (TIM16->ARR == (1000 -1)) {
-    //   // TIM16->ARR = 500 - 1;
-    //   __HAL_TIM_SET_AUTORELOAD(&htim16, (500 - 1));
-    // }
-    // else {
-    //   // TIM16->ARR = 1000 - 1;
-    //   __HAL_TIM_SET_AUTORELOAD(&htim16, (1000 - 1));
-    // }
-
-    // HAL_TIM_Base_Start_IT(&htim16);
-    // delay (500);
   } else PB_Held_Down = FALSE;
 }
 
@@ -163,13 +122,7 @@ void checkFlag(void) {
     PB_Pressed = FALSE;
     PB_Held_Down = TRUE;
 
-  } //else PB_Held_Down = TRUE;
-
-  // if (PB_Held_Down == TRUE) {
-  //   if (HAL_GPIO_ReadPin(Button0_GPIO_Port, Button0_Pin) == GPIO_PIN_SET) {
-  //     PB_Held_Down = FALSE;
-  //   }
-  // }
+  }
 }
 
 
@@ -226,7 +179,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
 	  // TODO: Check button PA0; if pressed, change timer delay
-	  //LL_GPIO_SetOutputPin(LED0_GPIO_Port, LED0_Pin);
+    
     checkPB();
     checkFlag();
     delay(100);
