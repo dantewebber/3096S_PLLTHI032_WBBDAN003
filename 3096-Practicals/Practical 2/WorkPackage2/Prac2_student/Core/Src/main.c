@@ -28,6 +28,8 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
+typedef uint8_t flag_t;
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -41,6 +43,10 @@
 #define WRSR 0b00000001 // write status register
 #define READ 0b00000011
 #define WRITE 0b00000010
+
+//For flag use
+#define FALSE 0
+#define TRUE 1
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -53,12 +59,11 @@ TIM_HandleTypeDef htim16;
 
 /* USER CODE BEGIN PV */
 // TODO: Define any input variables
-static uint8_t patterns[] = {0xAA, 0x55, 0xCC, 0x33, 0xF0, 0x0F};
 
-static uint8_t currentPatternIndex = 0; // To keep track of the current pattern index
-
-
-
+static uint8_t patterns[] = {0b10101010, 0b01010101, 0b11001100, 0b00110011, 0b11110000, 0b00001111};
+int addressToRead=0;
+flag_t PB_Pressed = FALSE;
+flag_t PB_Held_Down = FALSE;
 
 /* USER CODE END PV */
 
@@ -73,10 +78,100 @@ static void init_spi(void);
 static void write_to_address(uint16_t address, uint8_t data);
 static uint8_t read_from_address(uint16_t address);
 static void delay(uint32_t delay_in_us);
+void displayPatternLED(uint8_t displayPattern);
+void CheckPB(void);
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void displayPatternLED(uint8_t displayPattern){
+  
+  for (uint8_t j = 0; j < 8; j++){
+    if (displayPattern & (1 << j)) {
+      HAL_GPIO_WritePin(GPIOB, LED0_Pin << j, GPIO_PIN_SET);
+    }
+    else {
+      HAL_GPIO_WritePin(GPIOB, LED0_Pin << j, GPIO_PIN_RESET);
+    }
+  }
+}
+
+// void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+// {
+//     if(GPIO_Pin == Button0_Pin)
+//     {
+//       uint8_t u = 0;
+//       displayPatternLED(u);
+
+//       delay (3000000);
+
+//       HAL_TIM_Base_Stop_IT(&htim16);
+//       if (htim16.Init.Period==(1000 -1)) {
+//         htim16.Init.Period = 500 - 1;
+//       }
+//       else {
+//         htim16.Init.Period = 1000 - 1;
+//       }
+
+//       HAL_TIM_Base_Start_IT(&htim16);
+//     }
+// }
+
+void checkPB(void) {
+  if (HAL_GPIO_ReadPin (Button0_GPIO_Port, Button0_Pin) == GPIO_PIN_RESET) {
+    
+    // The lines below were used in testing
+    // uint8_t u = 0;
+    // displayPatternLED(u);
+    // delay (5000);
+
+    if (PB_Held_Down == FALSE) {
+      PB_Pressed = TRUE;
+    }
+    // PB_Held_Down = TRUE;
+
+    // HAL_TIM_Base_Stop_IT(&htim16);
+
+    // if (TIM16->ARR == (1000 -1)) {
+    //   // TIM16->ARR = 500 - 1;
+    //   __HAL_TIM_SET_AUTORELOAD(&htim16, (500 - 1));
+    // }
+    // else {
+    //   // TIM16->ARR = 1000 - 1;
+    //   __HAL_TIM_SET_AUTORELOAD(&htim16, (1000 - 1));
+    // }
+
+    // HAL_TIM_Base_Start_IT(&htim16);
+    // delay (500);
+  } else PB_Held_Down = FALSE;
+}
+
+void checkFlag(void) {
+
+  if ((PB_Pressed == TRUE)&&(PB_Held_Down == FALSE)) {
+
+    if (__HAL_TIM_GET_AUTORELOAD(&htim16) == (1000 -1)) {
+      // TIM16->ARR = 500 - 1; //Alternate option of accessing and setting the ARR register for TIM16
+      __HAL_TIM_SET_AUTORELOAD(&htim16, (500 - 1));
+    }
+    else {
+      // TIM16->ARR = 1000 - 1;
+      __HAL_TIM_SET_AUTORELOAD(&htim16, (1000 - 1));
+    }
+
+    PB_Pressed = FALSE;
+    PB_Held_Down = TRUE;
+
+  } //else PB_Held_Down = TRUE;
+
+  // if (PB_Held_Down == TRUE) {
+  //   if (HAL_GPIO_ReadPin(Button0_GPIO_Port, Button0_Pin) == GPIO_PIN_SET) {
+  //     PB_Held_Down = FALSE;
+  //   }
+  // }
+}
+
 
 /* USER CODE END 0 */
 
@@ -109,22 +204,16 @@ int main(void)
   MX_TIM16_Init();
   /* USER CODE BEGIN 2 */
 
-  // Initialize variables for button state and delay
-  uint8_t buttonState = 0;
-  uint32_t delayValue = 1000;
-
   // TODO: Start timer TIM16
   HAL_TIM_Base_Start_IT(&htim16);
 
 
   // TODO: Write all "patterns" to EEPROM using SPI
-  for (uint16_t i = 0; i < sizeof(patterns) / sizeof(patterns[0]); i++)
-  {
-	  write_to_address(i, patterns[i]);
-	  delay(100);
+  int currentAddress = 0b0;
+  for (int i = 0; i < sizeof(patterns); i++) {
+    write_to_address(currentAddress, patterns[i]);
+    currentAddress += 8;
   }
-
-
 
   /* USER CODE END 2 */
 
@@ -136,22 +225,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	// Read the state of Pushbutton 0 (PA0)
-	buttonState = HAL_GPIO_ReadPin(Button0_GPIO_Port, Button0_Pin);
-
-	// Change delay value based on button state
-	if (buttonState == GPIO_PIN_RESET) // Button is pressed
-	{
-		delayValue = 500; // Half-second delay (500 milliseconds)
-	}
-	else
-	{
-		delayValue = 1000; // 1-second delay (1000 milliseconds)
-	}
-
-	HAL_Delay(delayValue);
-
-	// TODO: Check button PA0; if pressed, change timer delay
+	  // TODO: Check button PA0; if pressed, change timer delay
+	  //LL_GPIO_SetOutputPin(LED0_GPIO_Port, LED0_Pin);
+    checkPB();
+    checkFlag();
+    delay(100);
 
   }
   /* USER CODE END 3 */
@@ -235,7 +313,6 @@ static void MX_GPIO_Init(void)
   LL_EXTI_InitTypeDef EXTI_InitStruct = {0};
   LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
 /* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOF);
@@ -352,7 +429,7 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-// Initialize SPI
+// Initialise SPI
 static void init_spi(void) {
 
   // Clock to PB
@@ -459,23 +536,26 @@ void TIM16_IRQHandler(void)
 	// Acknowledge interrupt
 	HAL_TIM_IRQHandler(&htim16);
 
-	// Read the next binary value from EEPROM and update LED pattern
-	currentPatternIndex = (currentPatternIndex + 1) % (sizeof(patterns) / sizeof(patterns[0]));
-	uint8_t readValue = read_from_address(currentPatternIndex);
-	uint8_t expectedValue = patterns[currentPatternIndex];
-
-	// Compare the read value with the expected value
-	if (readValue != expectedValue)
-	{
-		// Output 0b00000001 to LEDs to indicate SPI failure
-		LL_GPIO_WriteOutputPort(GPIOF, 0x01);
-	}
-	else
-	{
-		// Write patterns to the LEDs
-		LL_GPIO_WriteOutputPort(GPIOF, readValue);
-	}
 	// TODO: Change to next LED pattern; output 0x01 if the read SPI data is incorrect
+  uint8_t displayPattern = read_from_address(addressToRead*8);
+  uint8_t failedPattern = 0x01;
+
+  //********* TO SIMULATE FAIL - UNCOMMENT LINE BELOW **********
+  // displayPattern += 1;
+
+  if (patterns[addressToRead]==displayPattern) {
+    //display pattern on LEDs
+    displayPatternLED(displayPattern);
+  }
+  else {
+    //display 0x01;
+    displayPatternLED(failedPattern);
+  }
+  if (addressToRead>=5) {
+    addressToRead = 0;
+  }
+  else addressToRead++;
+
 
 }
 
