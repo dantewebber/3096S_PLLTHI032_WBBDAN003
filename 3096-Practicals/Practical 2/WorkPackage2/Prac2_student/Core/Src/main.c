@@ -1,4 +1,6 @@
 /* USER CODE BEGIN Header */
+/* WBBDAN003 and PLLTHI032 Prac 2 code for EEE3096S: Embedded Systems 2*/
+
 /**
   ******************************************************************************
   * @file           : main.c
@@ -62,6 +64,8 @@ TIM_HandleTypeDef htim16;
 
 static uint8_t patterns[] = {0b10101010, 0b01010101, 0b11001100, 0b00110011, 0b11110000, 0b00001111};
 int addressToRead=0;
+
+// Flags to control Push Button Interactions
 flag_t PB_Pressed = FALSE;
 flag_t PB_Held_Down = FALSE;
 
@@ -84,6 +88,8 @@ void CheckPB(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+// Displays an 8-bit binary number pattern on the 8 LEDs (PB0-PB7) 
 void displayPatternLED(uint8_t displayPattern){
   
   for (uint8_t j = 0; j < 8; j++){
@@ -96,6 +102,8 @@ void displayPatternLED(uint8_t displayPattern){
   }
 }
 
+// Checks the GPIO pin connected to the push button and sets the PB_Pressed flag true
+// if the GPIO pin was pulled low
 void checkPB(void) {
   if (HAL_GPIO_ReadPin (Button0_GPIO_Port, Button0_Pin) == GPIO_PIN_RESET) {
 
@@ -106,6 +114,7 @@ void checkPB(void) {
   } else PB_Held_Down = FALSE;
 }
 
+// Checks the flags that are set by the push button and executes functions based on combinations of flag values
 void checkFlag(void) {
 
   if ((PB_Pressed == TRUE)&&(PB_Held_Down == FALSE)) {
@@ -162,6 +171,7 @@ int main(void)
 
 
   // TODO: Write all "patterns" to EEPROM using SPI
+
   int currentAddress = 0b0;
   for (int i = 0; i < sizeof(patterns); i++) {
     write_to_address(currentAddress, patterns[i]);
@@ -180,6 +190,7 @@ int main(void)
 
 	  // TODO: Check button PA0; if pressed, change timer delay
     
+    // Loops through the fucntions that handle push button interactions
     checkPB();
     checkFlag();
     delay(100);

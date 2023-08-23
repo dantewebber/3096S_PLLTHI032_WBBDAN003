@@ -212,7 +212,7 @@ Discarded input sections
  .debug_rnglists
                 0x00000000       0x63 build/stm32f0xx_hal_dma.o
  .debug_line    0x00000000      0xaf0 build/stm32f0xx_hal_dma.o
- .debug_str     0x00000000      0x629 build/stm32f0xx_hal_dma.o
+ .debug_str     0x00000000      0x648 build/stm32f0xx_hal_dma.o
  .comment       0x00000000       0x3a build/stm32f0xx_hal_dma.o
  .debug_frame   0x00000000      0x168 build/stm32f0xx_hal_dma.o
  .ARM.attributes
@@ -258,7 +258,7 @@ Discarded input sections
  .debug_rnglists
                 0x00000000       0x63 build/stm32f0xx_hal_flash.o
  .debug_line    0x00000000      0x762 build/stm32f0xx_hal_flash.o
- .debug_str     0x00000000      0x520 build/stm32f0xx_hal_flash.o
+ .debug_str     0x00000000      0x53f build/stm32f0xx_hal_flash.o
  .comment       0x00000000       0x3a build/stm32f0xx_hal_flash.o
  .debug_frame   0x00000000      0x144 build/stm32f0xx_hal_flash.o
  .ARM.attributes
@@ -307,7 +307,7 @@ Discarded input sections
  .debug_rnglists
                 0x00000000       0x71 build/stm32f0xx_hal_flash_ex.o
  .debug_line    0x00000000      0x8d7 build/stm32f0xx_hal_flash_ex.o
- .debug_str     0x00000000      0x61c build/stm32f0xx_hal_flash_ex.o
+ .debug_str     0x00000000      0x63b build/stm32f0xx_hal_flash_ex.o
  .comment       0x00000000       0x3a build/stm32f0xx_hal_flash_ex.o
  .debug_frame   0x00000000      0x180 build/stm32f0xx_hal_flash_ex.o
  .ARM.attributes
@@ -501,7 +501,7 @@ Discarded input sections
  .debug_rnglists
                 0x00000000      0x21d build/stm32f0xx_hal_i2c.o
  .debug_line    0x00000000     0x5204 build/stm32f0xx_hal_i2c.o
- .debug_str     0x00000000      0xfd5 build/stm32f0xx_hal_i2c.o
+ .debug_str     0x00000000      0xff4 build/stm32f0xx_hal_i2c.o
  .comment       0x00000000       0x3a build/stm32f0xx_hal_i2c.o
  .debug_frame   0x00000000      0x8b0 build/stm32f0xx_hal_i2c.o
  .ARM.attributes
@@ -530,7 +530,7 @@ Discarded input sections
  .debug_rnglists
                 0x00000000       0x31 build/stm32f0xx_hal_i2c_ex.o
  .debug_line    0x00000000      0x577 build/stm32f0xx_hal_i2c_ex.o
- .debug_str     0x00000000      0x7fd build/stm32f0xx_hal_i2c_ex.o
+ .debug_str     0x00000000      0x81c build/stm32f0xx_hal_i2c_ex.o
  .comment       0x00000000       0x3a build/stm32f0xx_hal_i2c_ex.o
  .debug_frame   0x00000000       0xb0 build/stm32f0xx_hal_i2c_ex.o
  .ARM.attributes
@@ -571,7 +571,7 @@ Discarded input sections
  .debug_rnglists
                 0x00000000       0x55 build/stm32f0xx_hal_pwr.o
  .debug_line    0x00000000      0x3c5 build/stm32f0xx_hal_pwr.o
- .debug_str     0x00000000      0x3b2 build/stm32f0xx_hal_pwr.o
+ .debug_str     0x00000000      0x3d1 build/stm32f0xx_hal_pwr.o
  .comment       0x00000000       0x3a build/stm32f0xx_hal_pwr.o
  .debug_frame   0x00000000       0xd8 build/stm32f0xx_hal_pwr.o
  .ARM.attributes
@@ -596,7 +596,7 @@ Discarded input sections
  .debug_rnglists
                 0x00000000       0x2c build/stm32f0xx_hal_pwr_ex.o
  .debug_line    0x00000000      0x300 build/stm32f0xx_hal_pwr_ex.o
- .debug_str     0x00000000      0x279 build/stm32f0xx_hal_pwr_ex.o
+ .debug_str     0x00000000      0x298 build/stm32f0xx_hal_pwr_ex.o
  .comment       0x00000000       0x3a build/stm32f0xx_hal_pwr_ex.o
  .debug_frame   0x00000000       0x68 build/stm32f0xx_hal_pwr_ex.o
  .ARM.attributes
@@ -643,7 +643,7 @@ Discarded input sections
  .debug_rnglists
                 0x00000000       0x6e build/stm32f0xx_hal_rcc.o
  .debug_line    0x00000000      0xc15 build/stm32f0xx_hal_rcc.o
- .debug_str     0x00000000      0x667 build/stm32f0xx_hal_rcc.o
+ .debug_str     0x00000000      0x686 build/stm32f0xx_hal_rcc.o
  .comment       0x00000000       0x3a build/stm32f0xx_hal_rcc.o
  .debug_frame   0x00000000      0x134 build/stm32f0xx_hal_rcc.o
  .ARM.attributes
@@ -666,7 +666,7 @@ Discarded input sections
  .debug_rnglists
                 0x00000000       0x2f build/stm32f0xx_hal_rcc_ex.o
  .debug_line    0x00000000      0x57c build/stm32f0xx_hal_rcc_ex.o
- .debug_str     0x00000000      0x3d0 build/stm32f0xx_hal_rcc_ex.o
+ .debug_str     0x00000000      0x3ef build/stm32f0xx_hal_rcc_ex.o
  .comment       0x00000000       0x3a build/stm32f0xx_hal_rcc_ex.o
  .debug_frame   0x00000000       0x58 build/stm32f0xx_hal_rcc_ex.o
  .ARM.attributes
@@ -1021,7 +1021,7 @@ Discarded input sections
  .debug_rnglists
                 0x00000000       0x44 build/stm32f0xx_ll_rcc.o
  .debug_line    0x00000000      0x6ad build/stm32f0xx_ll_rcc.o
- .debug_str     0x00000000      0x5c9 build/stm32f0xx_ll_rcc.o
+ .debug_str     0x00000000      0x5e8 build/stm32f0xx_ll_rcc.o
  .comment       0x00000000       0x3a build/stm32f0xx_ll_rcc.o
  .debug_frame   0x00000000       0xd0 build/stm32f0xx_ll_rcc.o
  .ARM.attributes
@@ -1938,33 +1938,33 @@ LOAD /home/dantewebber/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpa
  .debug_line    0x00009a5b      0x7a2 build/stm32f0xx_ll_utils.o
  .debug_line    0x0000a1fd       0x77 build/startup_stm32f051x8.o
 
-.debug_str      0x00000000     0x2e05
+.debug_str      0x00000000     0x2dab
  .debug_str     0x00000000      0xd4e build/main.o
                                 0xe66 (size before relaxing)
- .debug_str     0x00000d4e       0xb9 build/stm32f0xx_hal_msp.o
-                                0x71a (size before relaxing)
- .debug_str     0x00000e07       0x6d build/stm32f0xx_it.o
-                                0x206 (size before relaxing)
- .debug_str     0x00000e74       0x86 build/system_stm32f0xx.o
-                                0x277 (size before relaxing)
- .debug_str     0x00000efa      0x291 build/stm32f0xx_hal.o
-                                0x6eb (size before relaxing)
- .debug_str     0x0000118b      0x228 build/stm32f0xx_hal_cortex.o
+ .debug_str     0x00000d4e       0x5f build/stm32f0xx_hal_msp.o
+                                0x739 (size before relaxing)
+ .debug_str     0x00000dad       0x6d build/stm32f0xx_it.o
+                                0x225 (size before relaxing)
+ .debug_str     0x00000e1a       0x86 build/system_stm32f0xx.o
+                                0x296 (size before relaxing)
+ .debug_str     0x00000ea0      0x291 build/stm32f0xx_hal.o
+                                0x70a (size before relaxing)
+ .debug_str     0x00001131      0x228 build/stm32f0xx_hal_cortex.o
+                                0x64b (size before relaxing)
+ .debug_str     0x00001359       0xf0 build/stm32f0xx_hal_gpio.o
+                                0x425 (size before relaxing)
+ .debug_str     0x00001449      0xefe build/stm32f0xx_hal_tim.o
+                               0x169a (size before relaxing)
+ .debug_str     0x00002347      0x55b build/stm32f0xx_hal_tim_ex.o
+                                0xeb6 (size before relaxing)
+ .debug_str     0x000028a2      0x13c build/stm32f0xx_ll_exti.o
+                                0x39a (size before relaxing)
+ .debug_str     0x000029de       0xf3 build/stm32f0xx_ll_gpio.o
+                                0x3c6 (size before relaxing)
+ .debug_str     0x00002ad1      0x2a8 build/stm32f0xx_ll_utils.o
                                 0x62c (size before relaxing)
- .debug_str     0x000013b3       0xf0 build/stm32f0xx_hal_gpio.o
-                                0x406 (size before relaxing)
- .debug_str     0x000014a3      0xefe build/stm32f0xx_hal_tim.o
-                               0x167b (size before relaxing)
- .debug_str     0x000023a1      0x55b build/stm32f0xx_hal_tim_ex.o
-                                0xe97 (size before relaxing)
- .debug_str     0x000028fc      0x13c build/stm32f0xx_ll_exti.o
-                                0x37b (size before relaxing)
- .debug_str     0x00002a38       0xf3 build/stm32f0xx_ll_gpio.o
-                                0x3a7 (size before relaxing)
- .debug_str     0x00002b2b      0x2a8 build/stm32f0xx_ll_utils.o
-                                0x60d (size before relaxing)
- .debug_str     0x00002dd3       0x32 build/startup_stm32f051x8.o
-                                 0x8c (size before relaxing)
+ .debug_str     0x00002d79       0x32 build/startup_stm32f051x8.o
+                                 0xab (size before relaxing)
 
 .debug_frame    0x00000000     0x1678
  .debug_frame   0x00000000      0x14c build/main.o
@@ -1981,9 +1981,9 @@ LOAD /home/dantewebber/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpa
  .debug_frame   0x00001578      0x100 build/stm32f0xx_ll_utils.o
 
 .debug_line_str
-                0x00000000       0x70
+                0x00000000       0x8f
  .debug_line_str
-                0x00000000       0x70 build/startup_stm32f051x8.o
+                0x00000000       0x8f build/startup_stm32f051x8.o
 
 Cross Reference Table
 
