@@ -22,7 +22,7 @@
         "USE_FULL_LL_DRIVER",
         "VDD_VALUE=3300"
       ],
-      "compilerPath": "/home/dantewebber/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.3.1-1.1.1/.content/bin/arm-none-eabi-gcc"
+      "compilerPath": "C:\\USERS\\PILLA\\APPDATA\\ROAMING\\CODE\\USER\\GLOBALSTORAGE\\BMD.STM32-FOR-VSCODE\\@XPACK-DEV-TOOLS\\ARM-NONE-EABI-GCC\\12.3.1-1.1.1\\.CONTENT\\BIN\\ARM-NONE-EABI-GCC.EXE"
     }
   ],
   "version": 4
