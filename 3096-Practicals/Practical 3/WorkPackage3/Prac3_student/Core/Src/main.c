@@ -49,6 +49,8 @@ TIM_HandleTypeDef htim3;
 uint32_t prev_millis = 0;
 uint32_t curr_millis = 0;
 uint32_t delay_t = 500; // Initialise delay to 500ms
+uint32_t delay_2 = 500; 
+uint32_t delay_1 = 1000; // Initialise delay of 1s
 uint32_t adc_val;
 /* USER CODE END PV */
 
@@ -61,6 +63,7 @@ static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
 void EXTI0_1_IRQHandler(void);
 void writeLCD(char *char_in);
+void switch_frequency(void);
 uint32_t pollADC(void);
 uint32_t ADCtoCCR(uint32_t adc_val);
 /* USER CODE END PFP */
@@ -118,9 +121,18 @@ int main(void)
 
 	// Update PWM value; TODO: Get CRR
 
-	__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_3, CCR);
+	//__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_3, CCR);
 
 	// Wait for delay ms
+  pollADC();
+
+  char buf[BUFSIZ];
+  sprintf(buf, "%lu", adc_val);
+  writeLCD(buf);
+
+  uint32_t ccr_val = ADCtoCCR(adc_val);
+  __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, ccr_val);
+  
 	HAL_Delay (delay_t);
     /* USER CODE END WHILE */
 
@@ -340,10 +352,26 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+void switch_frequency(void)
+{
+  if (delay_t==500)
+  {
+    delay_t = delay_1;
+  }
+  else if (delay_t == 1000)
+  {
+    delay_t = delay_2;
+  }
+}
+
+
 void EXTI0_1_IRQHandler(void)
 {
 	// TODO: Add code to switch LED7 delay frequency
-	
+  
+	switch_frequency();
+  
   
 	HAL_GPIO_EXTI_IRQHandler(Button0_Pin); // Clear interrupt flags
 }
@@ -351,22 +379,26 @@ void EXTI0_1_IRQHandler(void)
 // TODO: Complete the writeLCD function
 void writeLCD(char *char_in){
     delay(3000);
-	lcd_command(CLEAR);
+	
+  lcd_command(CLEAR);
+  lcd_putstring(char_in);
 
 }
 
 // Get ADC value
 uint32_t pollADC(void){
   // TODO: Complete function body to get ADC val
-
-	return val;
+  HAL_ADC_Start(&hadc);
+  adc_val = HAL_ADC_GetValue(&hadc);
+  HAL_ADC_Stop(&hadc);
+  return adc_val;
 }
 
 // Calculate PWM CCR value
 uint32_t ADCtoCCR(uint32_t adc_val){
   // TODO: Calculate CCR val using an appropriate equation
-
-	return val;
+  uint32_t ccr_val = adc_val*11.71875;
+	return ccr_val;
 }
 
 void ADC1_COMP_IRQHandler(void)
