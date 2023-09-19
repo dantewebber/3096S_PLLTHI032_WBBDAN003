@@ -1,4 +1,6 @@
 /* USER CODE BEGIN Header */
+// WBBDAN003 and PLLTHI032 Prac 3 code for EEE3096S: Embedded Systems 2
+// GITHUB LINK: https://github.com/dantewebber/3096S_PLLTHI032_WBBDAN003.git
 /**
   ******************************************************************************
   * @file           : main.c
@@ -375,9 +377,10 @@ void EXTI0_1_IRQHandler(void)
 
     set_frequency(frequency);
       
-    HAL_GPIO_EXTI_IRQHandler(Button0_Pin); // Clear interrupt flags
     currentTick = HAL_GetTick();
   }
+
+  HAL_GPIO_EXTI_IRQHandler(Button0_Pin); // Clear interrupt flags
 }
 
 // TODO: Complete the writeLCD function

@@ -2187,21 +2187,21 @@ LOAD /home/dantewebber/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpa
  .comment       0x00000039       0x3a /home/dantewebber/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.3.1-1.1.1/.content/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v6-m/nofp/libgcc.a(gedf2.o)
  .comment       0x00000039       0x3a /home/dantewebber/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.3.1-1.1.1/.content/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v6-m/nofp/libgcc.a(ledf2.o)
 
-.debug_info     0x00000000     0xbde8
- .debug_info    0x00000000     0x1de0 build/main.o
- .debug_info    0x00001de0      0xc76 build/stm32f0xx_hal_msp.o
- .debug_info    0x00002a56      0x121 build/stm32f0xx_it.o
- .debug_info    0x00002b77      0x25d build/system_stm32f0xx.o
- .debug_info    0x00002dd4      0x74c build/stm32f0xx_hal.o
- .debug_info    0x00003520      0xf56 build/stm32f0xx_hal_adc.o
- .debug_info    0x00004476      0x7cc build/stm32f0xx_hal_cortex.o
- .debug_info    0x00004c42      0x5ec build/stm32f0xx_hal_gpio.o
- .debug_info    0x0000522e     0x3b27 build/stm32f0xx_hal_tim.o
- .debug_info    0x00008d55     0x1a01 build/stm32f0xx_hal_tim_ex.o
- .debug_info    0x0000a756      0x4d7 build/stm32f0xx_ll_exti.o
- .debug_info    0x0000ac2d      0x76f build/stm32f0xx_ll_gpio.o
- .debug_info    0x0000b39c      0xa1c build/stm32f0xx_ll_utils.o
- .debug_info    0x0000bdb8       0x30 build/startup_stm32f051x8.o
+.debug_info     0x00000000     0xbde4
+ .debug_info    0x00000000     0x1ddc build/main.o
+ .debug_info    0x00001ddc      0xc76 build/stm32f0xx_hal_msp.o
+ .debug_info    0x00002a52      0x121 build/stm32f0xx_it.o
+ .debug_info    0x00002b73      0x25d build/system_stm32f0xx.o
+ .debug_info    0x00002dd0      0x74c build/stm32f0xx_hal.o
+ .debug_info    0x0000351c      0xf56 build/stm32f0xx_hal_adc.o
+ .debug_info    0x00004472      0x7cc build/stm32f0xx_hal_cortex.o
+ .debug_info    0x00004c3e      0x5ec build/stm32f0xx_hal_gpio.o
+ .debug_info    0x0000522a     0x3b27 build/stm32f0xx_hal_tim.o
+ .debug_info    0x00008d51     0x1a01 build/stm32f0xx_hal_tim_ex.o
+ .debug_info    0x0000a752      0x4d7 build/stm32f0xx_ll_exti.o
+ .debug_info    0x0000ac29      0x76f build/stm32f0xx_ll_gpio.o
+ .debug_info    0x0000b398      0xa1c build/stm32f0xx_ll_utils.o
+ .debug_info    0x0000bdb4       0x30 build/startup_stm32f051x8.o
 
 .debug_abbrev   0x00000000     0x1dfe
  .debug_abbrev  0x00000000      0x492 build/main.o
@@ -2307,21 +2307,21 @@ LOAD /home/dantewebber/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpa
  .debug_rnglists
                 0x000007fa       0x19 build/startup_stm32f051x8.o
 
-.debug_line     0x00000000     0xb5a0
- .debug_line    0x00000000      0xe41 build/main.o
- .debug_line    0x00000e41      0x3f8 build/stm32f0xx_hal_msp.o
- .debug_line    0x00001239      0x264 build/stm32f0xx_it.o
- .debug_line    0x0000149d      0x2ab build/system_stm32f0xx.o
- .debug_line    0x00001748      0x58e build/stm32f0xx_hal.o
- .debug_line    0x00001cd6     0x1090 build/stm32f0xx_hal_adc.o
- .debug_line    0x00002d66      0x5bf build/stm32f0xx_hal_cortex.o
- .debug_line    0x00003325      0x728 build/stm32f0xx_hal_gpio.o
- .debug_line    0x00003a4d     0x4cca build/stm32f0xx_hal_tim.o
- .debug_line    0x00008717     0x1d25 build/stm32f0xx_hal_tim_ex.o
- .debug_line    0x0000a43c      0x447 build/stm32f0xx_ll_exti.o
- .debug_line    0x0000a883      0x504 build/stm32f0xx_ll_gpio.o
- .debug_line    0x0000ad87      0x7a2 build/stm32f0xx_ll_utils.o
- .debug_line    0x0000b529       0x77 build/startup_stm32f051x8.o
+.debug_line     0x00000000     0xb5a4
+ .debug_line    0x00000000      0xe45 build/main.o
+ .debug_line    0x00000e45      0x3f8 build/stm32f0xx_hal_msp.o
+ .debug_line    0x0000123d      0x264 build/stm32f0xx_it.o
+ .debug_line    0x000014a1      0x2ab build/system_stm32f0xx.o
+ .debug_line    0x0000174c      0x58e build/stm32f0xx_hal.o
+ .debug_line    0x00001cda     0x1090 build/stm32f0xx_hal_adc.o
+ .debug_line    0x00002d6a      0x5bf build/stm32f0xx_hal_cortex.o
+ .debug_line    0x00003329      0x728 build/stm32f0xx_hal_gpio.o
+ .debug_line    0x00003a51     0x4cca build/stm32f0xx_hal_tim.o
+ .debug_line    0x0000871b     0x1d25 build/stm32f0xx_hal_tim_ex.o
+ .debug_line    0x0000a440      0x447 build/stm32f0xx_ll_exti.o
+ .debug_line    0x0000a887      0x504 build/stm32f0xx_ll_gpio.o
+ .debug_line    0x0000ad8b      0x7a2 build/stm32f0xx_ll_utils.o
+ .debug_line    0x0000b52d       0x77 build/startup_stm32f051x8.o
 
 .debug_str      0x00000000     0x32e9
  .debug_str     0x00000000     0x10eb build/main.o
