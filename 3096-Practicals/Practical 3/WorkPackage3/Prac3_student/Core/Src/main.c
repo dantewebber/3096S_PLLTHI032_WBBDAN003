@@ -77,7 +77,8 @@ uint32_t ADCtoCCR(uint32_t adc_val);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 void set_frequency(int freq) {
-  float period = 1/freq;
+  
+  // float period = 1/freq;
   // delay_t = round(period*1000);
 
   if (delay_t == 500) {
@@ -131,24 +132,20 @@ int main(void)
 	HAL_GPIO_TogglePin(GPIOB, LED7_Pin);
 
 	// ADC to LCD; TODO: Read POT1 value and write to LCD
-  HAL_ADC_Start(&hadc);
   pollADC();
-  HAL_ADC_Stop(&hadc);
-
-  ccr_val = ADCtoCCR(adc_val);
-  __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, ccr_val);
 
   // Converts adc_val to char and prints to LCD Screen
   char  buf[BUFSIZ];
-  sprintf(buf, "%lu", adc_val);
   writeLCD(buf);
 
 	// Update PWM value; TODO: Get CRR
 
 	// __HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_3, CCR);
+  __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_3, ccr_val);
 
 	// Wait for delay ms
 	HAL_Delay (delay_t);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -385,8 +382,10 @@ void EXTI0_1_IRQHandler(void)
 
 // TODO: Complete the writeLCD function
 void writeLCD(char *char_in){
+  ccr_val = ADCtoCCR(adc_val);
     delay(3000);
 	lcd_command(CLEAR);
+  sprintf(char_in, "%lu", adc_val);
   lcd_putstring(char_in);
 
 }
@@ -394,7 +393,12 @@ void writeLCD(char *char_in){
 // Get ADC value
 uint32_t pollADC(void){
   // TODO: Complete function body to get ADC val
+
+  // Starts the ADC, reads the ADC val, and then Stops the ADC
+  HAL_ADC_Start(&hadc);
   adc_val = HAL_ADC_GetValue(&hadc);
+  HAL_ADC_Stop(&hadc);
+  
 	return adc_val;
 }
 
